@@ -21,8 +21,8 @@ app.add_middleware(
 )
 
 # load model
-BASE_DIR   = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR.parent / 'model' / 'best_transfer.h5'
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_PATH = BASE_DIR / 'best_transfer.keras'
 
 if os.path.exists(MODEL_PATH):
     model = tf.keras.models.load_model(str(MODEL_PATH))
@@ -39,15 +39,13 @@ THRESHOLD = 0.6
 def preprocess_pipeline(image: Image.Image, IMG_SIZE = (224, 224)) -> np.ndarray:
     """
     Fungsi untuk melakukan preprocessing pada gambar input.
-    Praktikan diminta untuk:
-    - Melakukan resize gambar ke IMG_SIZE.
-    - Mengubah gambar menjadi array bertipe float32.
-    - Melakukan rescaling pixel dari [0,255] ke [0,1].
+    - Resize ke IMG_SIZE.
+    - Ubah ke float32.
+    - Rescale dari [0,255] ke [0,1].
     """
-    
-    # TODO: Lengkapi proses preprocessing di bawah ini
-    
-    return arr  # pastikan mengembalikan array hasil preprocessing
+    image = image.resize(IMG_SIZE)                        # Resize
+    arr = np.array(image).astype(np.float32) / 255.0      # Convert & rescale
+    return arr                                            # Kembalikan array hasil preprocessing
 
 # endpoint untuk menerima input dan menghasilkan prediksi
 @app.post("/predict/")

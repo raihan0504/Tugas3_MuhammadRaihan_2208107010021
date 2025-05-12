@@ -53,7 +53,7 @@ Disarankan menggunakan **Python 3.9–3.11**.
 Buat environment baru, lalu install dependencies:
 
 pip install -r requirements.txt
-
+wh
 ### 3. Download Dataset
 
 Unduh dataset Rock-Paper-Scissors dari Kaggle:  
