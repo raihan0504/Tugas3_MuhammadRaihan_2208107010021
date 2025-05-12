@@ -22,7 +22,7 @@ app.add_middleware(
 
 # load model
 BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR / 'best_transfer.keras'
+MODEL_PATH = BASE_DIR.parent / 'final_model.keras'
 
 if os.path.exists(MODEL_PATH):
     model = tf.keras.models.load_model(str(MODEL_PATH))
